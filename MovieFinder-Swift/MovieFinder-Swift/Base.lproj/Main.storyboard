@@ -1,24 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dtM-M8-HaP">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Movie FinderVC-->
+        <scene sceneID="IZP-CV-PeK">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="dtM-M8-HaP" customClass="MovieFinderVC" customModule="MovieFinder_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7l6-DS-ACq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="Search " translatesAutoresizingMaskIntoConstraints="NO" id="dxo-Fw-W4k">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vk0-QL-fvi">
+                                <rect key="frame" x="0.0" y="56" width="375" height="611"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.69488732990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dxo-Fw-W4k" firstAttribute="top" secondItem="7l6-DS-ACq" secondAttribute="top" id="02y-oY-uLk"/>
+                            <constraint firstItem="dxo-Fw-W4k" firstAttribute="trailing" secondItem="07E-x5-iUd" secondAttribute="trailing" id="8na-w8-U5B"/>
+                            <constraint firstItem="dxo-Fw-W4k" firstAttribute="leading" secondItem="07E-x5-iUd" secondAttribute="leading" id="Udi-KD-Gka"/>
+                            <constraint firstItem="07E-x5-iUd" firstAttribute="trailing" secondItem="vk0-QL-fvi" secondAttribute="trailing" id="chi-sE-7dt"/>
+                            <constraint firstItem="07E-x5-iUd" firstAttribute="bottom" secondItem="vk0-QL-fvi" secondAttribute="bottom" id="isL-Uz-mbT"/>
+                            <constraint firstItem="vk0-QL-fvi" firstAttribute="leading" secondItem="07E-x5-iUd" secondAttribute="leading" id="nW3-9e-xu7"/>
+                            <constraint firstItem="vk0-QL-fvi" firstAttribute="top" secondItem="dxo-Fw-W4k" secondAttribute="bottom" id="xvU-sP-563"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="07E-x5-iUd"/>
                     </view>
+                    <connections>
+                        <outlet property="movieSearchBar" destination="dxo-Fw-W4k" id="JNR-7v-HXE"/>
+                        <outlet property="resultTeableView" destination="vk0-QL-fvi" id="A8l-B2-swC"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jE6-lk-GRU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="119" y="160"/>
         </scene>
     </scenes>
 </document>
