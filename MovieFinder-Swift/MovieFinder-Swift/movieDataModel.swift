@@ -8,12 +8,30 @@
 
 import UIKit
 
-protocol movieDataModelDelegate {
+protocol movieDataModelDelegate: class {
     
     func  didReciveDataUpdate()
-    func  didFaileWithError(erroR:Error)
+    func  didFaileWithError(error:Error)
 }
 
 class movieDataModel: NSObject {
-
+    
+    weak var delegate: movieDataModelDelegate?
+    
+    func requestData() {
+        
+        //API call
+        
+        let data:[AnyObject]? = nil
+        let error:Error? = nil
+        
+        if let error = error {
+            delegate?.didFaileWithError(error:error)
+        }else if let data = data{
+            setDataToModelItem(response:data)
+        }
+    }
+    func setDataToModelItem(response:[AnyObject]){
+        
+    }
 }
