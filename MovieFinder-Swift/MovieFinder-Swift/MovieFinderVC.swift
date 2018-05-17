@@ -51,7 +51,10 @@ extension MovieFinderVC:UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let identifer = "Cell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifer, for: indexPath)
         
+        return cell
         
     }
     

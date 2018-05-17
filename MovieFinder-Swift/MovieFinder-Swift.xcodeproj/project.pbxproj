@@ -15,6 +15,7 @@
 		FD6D74C820ADBF0D004928AC /* MovieFinderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6D74C720ADBF0D004928AC /* MovieFinderVC.swift */; };
 		FD6D74CB20ADC67F004928AC /* ResultViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6D74C920ADC67F004928AC /* ResultViewCell.swift */; };
 		FD6D74CC20ADC67F004928AC /* ResultViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD6D74CA20ADC67F004928AC /* ResultViewCell.xib */; };
+		FD6D74CE20ADFF8E004928AC /* movieDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6D74CD20ADFF8E004928AC /* movieDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		FD6D74C720ADBF0D004928AC /* MovieFinderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFinderVC.swift; sourceTree = "<group>"; };
 		FD6D74C920ADC67F004928AC /* ResultViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewCell.swift; sourceTree = "<group>"; };
 		FD6D74CA20ADC67F004928AC /* ResultViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultViewCell.xib; sourceTree = "<group>"; };
+		FD6D74CD20ADFF8E004928AC /* movieDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movieDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +83,14 @@
 		FD6D74A320ADBD63004928AC /* MovieFinder-Swift */ = {
 			isa = PBXGroup;
 			children = (
-				FD6D74C720ADBF0D004928AC /* MovieFinderVC.swift */,
 				FD6D74A420ADBD63004928AC /* AppDelegate.swift */,
+				FD6D74C720ADBF0D004928AC /* MovieFinderVC.swift */,
+				FD6D74C920ADC67F004928AC /* ResultViewCell.swift */,
+				FD6D74CD20ADFF8E004928AC /* movieDataModel.swift */,
 				FD6D74AE20ADBD63004928AC /* Assets.xcassets */,
 				FD6D74A820ADBD63004928AC /* Main.storyboard */,
 				FD6D74B020ADBD63004928AC /* LaunchScreen.storyboard */,
 				FD6D74B320ADBD63004928AC /* Info.plist */,
-				FD6D74C920ADC67F004928AC /* ResultViewCell.swift */,
 				FD6D74CA20ADC67F004928AC /* ResultViewCell.xib */,
 			);
 			path = "MovieFinder-Swift";
@@ -208,6 +211,7 @@
 			files = (
 				FD6D74A520ADBD63004928AC /* AppDelegate.swift in Sources */,
 				FD6D74CB20ADC67F004928AC /* ResultViewCell.swift in Sources */,
+				FD6D74CE20ADFF8E004928AC /* movieDataModel.swift in Sources */,
 				FD6D74C820ADBF0D004928AC /* MovieFinderVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
