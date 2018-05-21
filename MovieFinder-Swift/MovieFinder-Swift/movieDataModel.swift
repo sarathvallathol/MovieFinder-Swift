@@ -10,7 +10,7 @@ import UIKit
 
 protocol movieDataModelDelegate: class {
     
-    func  didReciveDataUpdate()
+    func  didReciveDataUpdate(parsedData:AnyClass)
     func  didFaileWithError(error:Error)
 }
 
@@ -22,16 +22,27 @@ class movieDataModel: NSObject {
         
         //API call
         
-        let data:[AnyObject]? = nil
-        let error:Error? = nil
+      guard let url = URL(string: "http://www.omdbapi.com/?t=titanic") else {return}
         
-        if let error = error {
-            delegate?.didFaileWithError(error:error)
-        }else if let data = data{
-            setDataToModelItem(response:data)
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error)
+            in
+            guard let data = data else {
+                print("Error: No data to decode")
+                return
+            }
+            
+            guard let jsonResponse = try? JSONDecoder().decode(movie.self, from: data) else {
+                print("Error: Couldn't decode data into Blog")
+                return
+            }
+            print(jsonResponse.movie_char!)
         }
+  
+        task.resume()
     }
     func setDataToModelItem(response:[AnyObject]){
+        
+       // delegate?.didReciveDataUpdate(parsedData:AnyClass)
         
     }
 }
