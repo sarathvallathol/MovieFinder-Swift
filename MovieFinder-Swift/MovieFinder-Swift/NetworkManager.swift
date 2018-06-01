@@ -21,7 +21,7 @@ class NetworkManager: NSObject {
     
     weak var delegate: movieDataModelDelegate?
     
-    func requestData(searchElement:String) {
+    func requestData(searchElement:String, completion:@escaping (Movie) -> ()) {
         
       //API call
       guard let url = URL(string:baseUrl+searchElement+apiKey ) else {return}
@@ -32,7 +32,8 @@ class NetworkManager: NSObject {
                 print("Error: Couldn't decode data into Blog")
                 return
             }
-            self.updateResponse(response: jsonResponse)
+            completion(jsonResponse)
+            //self.updateResponse(response: jsonResponse)
         }
   
         task.resume()
@@ -41,5 +42,6 @@ class NetworkManager: NSObject {
         delegate?.didReciveDataUpdate(parsedData: response)
         
     }
+    
     
 }

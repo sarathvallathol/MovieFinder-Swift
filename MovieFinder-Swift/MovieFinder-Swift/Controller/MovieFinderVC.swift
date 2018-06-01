@@ -15,7 +15,8 @@ class MovieFinderVC: UIViewController {
     
     var activityIndicator = UIActivityIndicatorView()
     var isSearching:Bool = false
-    var recentSearchArray:[String]?
+    var recentSearchArray:[String] = []
+    var responseData:Movie?
     
     private let jsonData = NetworkManager()
     
@@ -84,13 +85,9 @@ extension MovieFinderVC:UITableViewDataSource{
         
         switch section {
         case 0:
-            if let array = recentSearchArray{
-                return array.count
-            }else{
-                return 0
-            }
+            return recentSearchArray.count
         case 1:
-            return 6
+            return 1
         default:
             return 0
         }
@@ -99,15 +96,15 @@ extension MovieFinderVC:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let recentSearchCell = tableView.dequeueReusableCell(withIdentifier: "recentCell", for: indexPath) as! RecentSearchCell
         let cell             = tableView.dequeueReusableCell(withIdentifier:"Cell" , for: indexPath) as! ResultViewCell
-
-        recentSearchCell.titleLabel?.text = recentSearchArray?[indexPath.row]
+        
         if isSearching{
                 if indexPath.section == 0 {
+                    recentSearchCell.titleLabel?.text = recentSearchArray[indexPath.row]
                     return recentSearchCell
                 }
                 else {
                     
-                    cell.movieName?.text = "titanic"
+                    cell.movieName?.text = responseData?.movie_name
                     return cell
                     
                 }
@@ -143,20 +140,29 @@ extension MovieFinderVC:UISearchBarDelegate{
             tableView.reloadData()
         }else{
             isSearching = true
-            recentSearchArray?.append(searchBar.text!)
-            jsonData.requestData(searchElement: searchBar.text!)
-            searchBar.resignFirstResponder()
+             searchBar.resignFirstResponder()
+            recentSearchArray.append(searchBar.text!)
             tableView.addSubview(activityIndicator)
             activityIndicator.center = tableView.center
             activityIndicator.backgroundColor = .red
             activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
             activityIndicator.frame = CGRect(x:0, y: 0, width: 46, height: 46)
             activityIndicator.startAnimating()
-            tableView.reloadData()
-
-            
+            let searchText = searchBar.text!
+            DispatchQueue.global().async {
+                self.jsonData.requestData(searchElement:searchText, completion:{
+                    (data) in
+                    self.responseData = data
+                })
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+  
         }
     }
+    
+    
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
