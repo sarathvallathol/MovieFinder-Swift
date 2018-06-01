@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD332D9020C16CD100BA78C2 /* SearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD332D8F20C16CD100BA78C2 /* SearchResultController.swift */; };
 		FD6D74A520ADBD63004928AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6D74A420ADBD63004928AC /* AppDelegate.swift */; };
 		FD6D74AA20ADBD63004928AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD6D74A820ADBD63004928AC /* Main.storyboard */; };
 		FD6D74AF20ADBD63004928AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD6D74AE20ADBD63004928AC /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD332D8F20C16CD100BA78C2 /* SearchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultController.swift; sourceTree = "<group>"; };
 		FD6D74A120ADBD63004928AC /* MovieFinder-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MovieFinder-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD6D74A420ADBD63004928AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD6D74A920ADBD63004928AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			children = (
 				FD6D74A420ADBD63004928AC /* AppDelegate.swift */,
 				FD6D74C720ADBF0D004928AC /* MovieFinderVC.swift */,
+				FD332D8F20C16CD100BA78C2 /* SearchResultController.swift */,
 				FD6D74C920ADC67F004928AC /* ResultViewCell.swift */,
 				FD6D74CD20ADFF8E004928AC /* NetworkManager.swift */,
 				FDA76ED220AEF3C000A27803 /* movieDataModelItem.swift */,
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD332D9020C16CD100BA78C2 /* SearchResultController.swift in Sources */,
 				FD6D74A520ADBD63004928AC /* AppDelegate.swift in Sources */,
 				FDA76ED320AEF3C000A27803 /* movieDataModelItem.swift in Sources */,
 				FD6D74CB20ADC67F004928AC /* ResultViewCell.swift in Sources */,
