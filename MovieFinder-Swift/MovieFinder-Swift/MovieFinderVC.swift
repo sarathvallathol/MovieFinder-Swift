@@ -18,7 +18,8 @@ class MovieFinderVC: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        
+        let callApi = NetworkManager()
+        callApi.requestData(searchElement:"titanic")
     }
 
     override func didReceiveMemoryWarning() {
