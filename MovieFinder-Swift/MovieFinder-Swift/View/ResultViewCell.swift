@@ -12,8 +12,7 @@ class ResultViewCell: UITableViewCell {
 
     @IBOutlet weak var movieCover: UIImageView?
     @IBOutlet weak var movieName: UILabel?
-    
-    
+    @IBOutlet weak var descriptionLabel:UILabel?
     
     override func awakeFromNib() {
         super.awakeFromNib()

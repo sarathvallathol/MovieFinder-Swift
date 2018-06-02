@@ -12,7 +12,7 @@ struct Movie: Decodable {
     
     let movie_name:String?
     let movie_year:String?
-    let movie_coverUrl:URL?
+    let movie_coverUrl:String?
     let movie_releasedDate:String?
     let movie_director:String?
     let movie_char:String?

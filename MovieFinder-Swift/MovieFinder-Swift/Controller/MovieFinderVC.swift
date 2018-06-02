@@ -16,19 +16,26 @@ class MovieFinderVC: UIViewController {
     var activityIndicator = UIActivityIndicatorView()
     var isSearching:Bool = false
     var recentSearchArray:[String] = []
-    var responseData:Movie?
+    var responseData:Movie?{
+        didSet{
+            DispatchQueue.main.async {
+                
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    
     
     private let jsonData = NetworkManager()
-    
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.searchBar.delegate = self
+        tableView.addSubview(activityIndicator)
         self.searchBar.returnKeyType = UIReturnKeyType.search
         tableView.register(UINib(nibName: "ResultViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
         tableView.register(UINib(nibName: "RecentSearchCell", bundle: nil), forCellReuseIdentifier: "recentCell")
@@ -63,6 +70,17 @@ extension MovieFinderVC:UITableViewDelegate{
         return 2
         }
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if indexPath.section == 1 {
+            
+            return 90
+        }else{
+            
+            return 44
+        }
+        
+    }
     internal func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
      
         switch section {
@@ -94,8 +112,8 @@ extension MovieFinderVC:UITableViewDataSource{
         
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let recentSearchCell = tableView.dequeueReusableCell(withIdentifier: "recentCell", for: indexPath) as! RecentSearchCell
-        let cell             = tableView.dequeueReusableCell(withIdentifier:"Cell" , for: indexPath) as! ResultViewCell
+        let recentSearchCell = tableView.dequeueReusableCell(withIdentifier: "recentCell") as! RecentSearchCell
+        let cell             = tableView.dequeueReusableCell(withIdentifier:"Cell") as! ResultViewCell
         
         if isSearching{
                 if indexPath.section == 0 {
@@ -105,6 +123,8 @@ extension MovieFinderVC:UITableViewDataSource{
                 else {
                     
                     cell.movieName?.text = responseData?.movie_name
+                    cell.descriptionLabel?.text = responseData?.movie_director
+                    cell.movieCover?.loadImageFromUrlString(urlString:(responseData?.movie_coverUrl)!)
                     return cell
                     
                 }
@@ -139,30 +159,38 @@ extension MovieFinderVC:UISearchBarDelegate{
             view.endEditing(true)
             tableView.reloadData()
         }else{
+            
             isSearching = true
              searchBar.resignFirstResponder()
-            recentSearchArray.append(searchBar.text!)
-            tableView.addSubview(activityIndicator)
-            activityIndicator.center = tableView.center
-            activityIndicator.backgroundColor = .red
-            activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
-            activityIndicator.frame = CGRect(x:0, y: 0, width: 46, height: 46)
-            activityIndicator.startAnimating()
+            if recentSearchArray.contains(searchBar.text!){
+                //Dont add to array
+            }else{
+                recentSearchArray.append(searchBar.text!)
+            }
             let searchText = searchBar.text!
-            DispatchQueue.global().async {
-                self.jsonData.requestData(searchElement:searchText, completion:{
+            activityIndicatorSetup()
+            self.jsonData.requestData(searchElement:searchText, completion:{
                     (data) in
                     self.responseData = data
+                    self.stopIndicator()
                 })
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-  
         }
+        
     }
     
-    
+    func activityIndicatorSetup(){
+        activityIndicator.center = tableView.center
+        activityIndicator.backgroundColor = .red
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activityIndicator.frame = CGRect(x:0, y: 0, width: 46, height: 46)
+        activityIndicator.startAnimating()
+    }
+    func stopIndicator(){
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+
+        }
+    }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
