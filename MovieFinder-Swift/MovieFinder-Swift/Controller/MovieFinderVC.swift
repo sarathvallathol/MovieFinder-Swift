@@ -24,9 +24,7 @@ class MovieFinderVC: UIViewController {
             }
         }
     }
-    
-    
-    
+
     private let jsonData = NetworkManager()
 
     override func viewDidLoad() {
@@ -40,15 +38,13 @@ class MovieFinderVC: UIViewController {
         tableView.register(UINib(nibName: "ResultTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
         tableView.register(UINib(nibName: "RecentSearchCell", bundle: nil), forCellReuseIdentifier: "recentCell")
         // Do any additional setup after loading the view.
-        
-        
+
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     /*
      // MARK: - Navigation
@@ -63,13 +59,6 @@ class MovieFinderVC: UIViewController {
 }
 extension MovieFinderVC:UITableViewDelegate{
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        if isSearching == false{
-         return 1
-        }else{
-        return 2
-        }
-    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.section == 1 {
@@ -79,7 +68,6 @@ extension MovieFinderVC:UITableViewDelegate{
             
             return 44
         }
-        
     }
     internal func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
      
@@ -90,15 +78,41 @@ extension MovieFinderVC:UITableViewDelegate{
             return "Search Result"
         default:
             return ""
-            
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        if indexPath.section == 1 {
+            let currentCell = tableView.cellForRow(at: indexPath) as! ResultTableViewCell
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let detiledView = storyboard.instantiateViewController(withIdentifier:"DetailedViewController") as! DetailedViewController
+            detiledView.posterImage = currentCell.movieCover?.image
+            detiledView.movieName.text = currentCell.movieName?.text
+            self.navigationController?.pushViewController(detiledView, animated:true)
+        }else{
+            let currentCell = tableView.cellForRow(at: indexPath) as! RecentSearchCell
+            searchBar.text = currentCell.titleLabel?.text
+            self.jsonData.requestData(searchElement:searchBar.text!, completion:{
+                (data) in
+                self.responseData = data
+                self.stopIndicator()
+            })
+        }
         
     }
 }
 extension MovieFinderVC:UITableViewDataSource{
     
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if isSearching == false{
+            return 1
+        }else{
+            return 2
+        }
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch section {
@@ -111,40 +125,30 @@ extension MovieFinderVC:UITableViewDataSource{
         }
         
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let recentSearchCell = tableView.dequeueReusableCell(withIdentifier: "recentCell") as! RecentSearchCell
-        let cell             = tableView.dequeueReusableCell(withIdentifier:"Cell") as! ResultTableViewCell
         
         if isSearching{
-                if indexPath.section == 0 {
-                    recentSearchCell.titleLabel?.text = recentSearchArray[indexPath.row]
-                    return recentSearchCell
-                }
-                else {
-                    
-                    cell.movieName?.text = responseData?.movie_name
-                    cell.descriptionLabel?.text = responseData?.movie_director
-                    cell.movieCover?.loadImageFromUrlString(urlString:(responseData?.movie_coverUrl)!)
-                    return cell
-                    
-                }
+            switch indexPath.section {
+            case 0:
+                recentSearchCell.titleLabel?.text = recentSearchArray[indexPath.row]
+                return recentSearchCell
+            case 1:
+                let cell             = tableView.dequeueReusableCell(withIdentifier:"Cell") as! ResultTableViewCell
+                cell.movieName?.text = responseData?.movie_name
+                cell.descriptionLabel?.text = responseData?.movie_director
+                cell.movieCover?.loadImageFromUrlString(urlString:(responseData?.movie_coverUrl)!)
+                return cell
+            default:
+                return UITableViewCell()
             }
+        }else{
             
-        else{
-           
-           return recentSearchCell
+            return recentSearchCell
         }
-        
-        
-        
     }
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        
-        let currentCell = tableView.cellForRow(at: indexPath) as! ResultTableViewCell
-        searchBar.text = currentCell.movieName?.text
-        searchBar.becomeFirstResponder()
-    }
-    
     
 }
 extension MovieFinderVC:UISearchBarDelegate{
@@ -175,7 +179,6 @@ extension MovieFinderVC:UISearchBarDelegate{
                     self.stopIndicator()
                 })
         }
-        
     }
     
     func activityIndicatorSetup(){
@@ -191,7 +194,6 @@ extension MovieFinderVC:UISearchBarDelegate{
 
         }
     }
-    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
     }
