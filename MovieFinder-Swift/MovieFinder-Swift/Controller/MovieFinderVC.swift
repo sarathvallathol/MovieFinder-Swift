@@ -37,7 +37,7 @@ class MovieFinderVC: UIViewController {
         self.searchBar.delegate = self
         tableView.addSubview(activityIndicator)
         self.searchBar.returnKeyType = UIReturnKeyType.search
-        tableView.register(UINib(nibName: "ResultViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
+        tableView.register(UINib(nibName: "ResultTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
         tableView.register(UINib(nibName: "RecentSearchCell", bundle: nil), forCellReuseIdentifier: "recentCell")
         // Do any additional setup after loading the view.
         
@@ -113,7 +113,7 @@ extension MovieFinderVC:UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let recentSearchCell = tableView.dequeueReusableCell(withIdentifier: "recentCell") as! RecentSearchCell
-        let cell             = tableView.dequeueReusableCell(withIdentifier:"Cell") as! ResultViewCell
+        let cell             = tableView.dequeueReusableCell(withIdentifier:"Cell") as! ResultTableViewCell
         
         if isSearching{
                 if indexPath.section == 0 {
@@ -140,7 +140,7 @@ extension MovieFinderVC:UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
-        let currentCell = tableView.cellForRow(at: indexPath) as! ResultViewCell
+        let currentCell = tableView.cellForRow(at: indexPath) as! ResultTableViewCell
         searchBar.text = currentCell.movieName?.text
         searchBar.becomeFirstResponder()
     }

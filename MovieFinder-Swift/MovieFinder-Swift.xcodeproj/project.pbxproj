@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD1A9F6C20C3F50F003A2C2D /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1A9F6A20C3F50F003A2C2D /* ResultTableViewCell.swift */; };
+		FD1A9F6D20C3F50F003A2C2D /* ResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD1A9F6B20C3F50F003A2C2D /* ResultTableViewCell.xib */; };
 		FD332D9020C16CD100BA78C2 /* SearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD332D8F20C16CD100BA78C2 /* SearchResultController.swift */; };
 		FD6D74A520ADBD63004928AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6D74A420ADBD63004928AC /* AppDelegate.swift */; };
 		FD6D74AA20ADBD63004928AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD6D74A820ADBD63004928AC /* Main.storyboard */; };
@@ -14,8 +16,6 @@
 		FD6D74B220ADBD63004928AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD6D74B020ADBD63004928AC /* LaunchScreen.storyboard */; };
 		FD6D74BD20ADBD63004928AC /* MovieFinder_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6D74BC20ADBD63004928AC /* MovieFinder_SwiftTests.swift */; };
 		FD6D74C820ADBF0D004928AC /* MovieFinderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6D74C720ADBF0D004928AC /* MovieFinderVC.swift */; };
-		FD6D74CB20ADC67F004928AC /* ResultViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6D74C920ADC67F004928AC /* ResultViewCell.swift */; };
-		FD6D74CC20ADC67F004928AC /* ResultViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD6D74CA20ADC67F004928AC /* ResultViewCell.xib */; };
 		FD6D74CE20ADFF8E004928AC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6D74CD20ADFF8E004928AC /* NetworkManager.swift */; };
 		FD8B58E020C2FAE500419F8E /* ImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8B58DF20C2FAE500419F8E /* ImageView+Extension.swift */; };
 		FDA76ED320AEF3C000A27803 /* movieDataModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA76ED220AEF3C000A27803 /* movieDataModelItem.swift */; };
@@ -34,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD1A9F6A20C3F50F003A2C2D /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
+		FD1A9F6B20C3F50F003A2C2D /* ResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultTableViewCell.xib; sourceTree = "<group>"; };
 		FD332D8F20C16CD100BA78C2 /* SearchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultController.swift; sourceTree = "<group>"; };
 		FD6D74A120ADBD63004928AC /* MovieFinder-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MovieFinder-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD6D74A420ADBD63004928AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,8 +47,6 @@
 		FD6D74BC20ADBD63004928AC /* MovieFinder_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFinder_SwiftTests.swift; sourceTree = "<group>"; };
 		FD6D74BE20ADBD63004928AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD6D74C720ADBF0D004928AC /* MovieFinderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFinderVC.swift; sourceTree = "<group>"; };
-		FD6D74C920ADC67F004928AC /* ResultViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewCell.swift; sourceTree = "<group>"; };
-		FD6D74CA20ADC67F004928AC /* ResultViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultViewCell.xib; sourceTree = "<group>"; };
 		FD6D74CD20ADFF8E004928AC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		FD8B58DF20C2FAE500419F8E /* ImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Extension.swift"; sourceTree = "<group>"; };
 		FDA76ED220AEF3C000A27803 /* movieDataModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movieDataModelItem.swift; sourceTree = "<group>"; };
@@ -127,10 +127,10 @@
 		FDCEF43020C1BC2D0049E00A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FD6D74C920ADC67F004928AC /* ResultViewCell.swift */,
-				FD6D74CA20ADC67F004928AC /* ResultViewCell.xib */,
 				FDCEF43120C1BC6E0049E00A /* RecentSearchCell.swift */,
 				FDCEF43220C1BC6E0049E00A /* RecentSearchCell.xib */,
+				FD1A9F6A20C3F50F003A2C2D /* ResultTableViewCell.swift */,
+				FD1A9F6B20C3F50F003A2C2D /* ResultTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -243,9 +243,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD1A9F6D20C3F50F003A2C2D /* ResultTableViewCell.xib in Resources */,
 				FDCEF43420C1BC6E0049E00A /* RecentSearchCell.xib in Resources */,
 				FD6D74B220ADBD63004928AC /* LaunchScreen.storyboard in Resources */,
-				FD6D74CC20ADC67F004928AC /* ResultViewCell.xib in Resources */,
 				FD6D74AF20ADBD63004928AC /* Assets.xcassets in Resources */,
 				FD6D74AA20ADBD63004928AC /* Main.storyboard in Resources */,
 			);
@@ -270,8 +270,8 @@
 				FD8B58E020C2FAE500419F8E /* ImageView+Extension.swift in Sources */,
 				FD6D74A520ADBD63004928AC /* AppDelegate.swift in Sources */,
 				FDA76ED320AEF3C000A27803 /* movieDataModelItem.swift in Sources */,
-				FD6D74CB20ADC67F004928AC /* ResultViewCell.swift in Sources */,
 				FD6D74CE20ADFF8E004928AC /* NetworkManager.swift in Sources */,
+				FD1A9F6C20C3F50F003A2C2D /* ResultTableViewCell.swift in Sources */,
 				FD6D74C820ADBF0D004928AC /* MovieFinderVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
